@@ -1,13 +1,14 @@
 {
   "variables": {
     "aws_access_key": "",
-    "aws_secret_key": ""
+    "aws_secret_key": "",
+    "region": ""
   },
   "builders": [{
     "type": "amazon-ebs",
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
-    "region": "ap-northeast-1",
+    "region": "{{user `region`}}",
     "source_ami": "ami-f80e0596",
     "instance_type": "t2.micro",
     "ssh_username": "ec2-user",
@@ -17,7 +18,7 @@
   "provisioners": [
   {
    "type": "file",
-   "source": "./itamae",
+   "source": "./itamae/itamae",
    "destination": "itamae"
   },
   {
@@ -26,7 +27,7 @@
      "sudo yum -y update",
      "sudo yum install -y rubygems ruby-devel ruby20-devel gcc-c++",
      "sudo gem install itamae io-console",
-     "sudo /usr/local/bin/itamae local -j itamae/nodes/config.json itamae/recipes/base.rb"
+     "sudo /usr/local/bin/itamae local -j itamae/nodes/node.json itamae/recipes/base.rb"
    ]
   }
  ]

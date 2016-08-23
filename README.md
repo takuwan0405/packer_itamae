@@ -12,6 +12,8 @@ Inside this packer Itamae runs to install ruby and rails as provisioner.
 
 ## Usuage
 
+#### Importing Itamae
+
 Add itamae provisioner as git submodule.
 ```
 git submodule add https://github.com/takuwan0405/itamae-rails.git itamae
@@ -22,6 +24,8 @@ Before running packer, updating submodue is recommended.
 git submodule update
 ```
 
+#### AWS AMI
+
 In variables.json file, you have to set your aws access key and secret key.
 ```
 vi variables.json
@@ -29,10 +33,10 @@ vi variables.json
 
 You could validate your template.
 ```
-packer validate -var-file=variables.json template.json
+packer validate -var-file=variables.json template_ami.json
 ```
 
 Run packer to make AMI.
 ```
-packer build -var-file=variables.json template.json
+packer build -var-file=variables.json template_ami.json
 ```
